@@ -170,11 +170,11 @@ if ( (defined('CMDB_SERVERLIST_COMPARE') AND CMDB_SERVERLIST_COMPARE == 1) AND (
 
         // Checkbox selection with textlink
         $('#text_selectall').click(function() {
-            var all_checked = $('#checkbox_selectall').attr('checked');
+            var all_checked = $('#checkbox_selectall').prop('checked');
             if (all_checked){
-                $("#checkbox_selectall").attr('checked', false);
+                $("#checkbox_selectall").prop('checked', false);
             }else{
-                $("#checkbox_selectall").attr('checked', true);
+                $("#checkbox_selectall").prop('checked', true);
             }
 
             update_checkboxes();
@@ -187,7 +187,7 @@ if ( (defined('CMDB_SERVERLIST_COMPARE') AND CMDB_SERVERLIST_COMPARE == 1) AND (
         });
 
         function update_checkboxes(){
-            $("input:checkbox").attr('checked', $('#checkbox_selectall').is(':checked') );
+            $("input:checkbox").prop('checked', $('#checkbox_selectall').is(':checked') );
         }
 
 

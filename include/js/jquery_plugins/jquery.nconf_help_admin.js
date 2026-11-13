@@ -25,7 +25,11 @@ jQuery.nconf_help_admin = function(type) {
         $(this).addClass('help_box');
         $(this).dialog({
             autoOpen: false,
-            position: [position_left, position_top]
+            position: {
+                my: "left top",
+                at: "left+" + Math.round(position_left) + " top+" + Math.round(position_top),
+                of: window
+            }
         });
 
 

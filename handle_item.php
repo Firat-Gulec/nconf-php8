@@ -878,7 +878,7 @@ if(
                 echo '>';
                 
                 # split predef value
-                $predef_value = preg_split("/".SELECT_VALUE_SEPARATOR."/", $entry["predef_value"]);
+                $predef_value = preg_split("/".SELECT_VALUE_SEPARATOR."/", (string) $entry["predef_value"]);
                 $selected_items = array();
                 while($menu2 = mysqli_fetch_assoc($result2)){
                     // SELECTED
@@ -1035,7 +1035,7 @@ if(
                 $result2 = db_handler($query2, "result", "assign_cust_order");
                 
                 # split predef value
-                $predef_value = preg_split("/".SELECT_VALUE_SEPARATOR."/", $entry["predef_value"]);
+                $predef_value = preg_split("/".SELECT_VALUE_SEPARATOR."/", (string) $entry["predef_value"]);
                 $selected_items = array();
 
                 # generate base array
@@ -1060,7 +1060,7 @@ if(
                     if ($handle_action != "modify"){
                         # add / multimodify
                         # load predefined items, prepare arrays (this needs the special search_array
-                        $predef_values = preg_split("/".SELECT_VALUE_SEPARATOR."/", $entry["predef_value"]);
+                        $predef_values = preg_split("/".SELECT_VALUE_SEPARATOR."/", (string) $entry["predef_value"]);
                         if ( isset($predef_values) AND is_array($predef_values) ){
                             foreach ($predef_values as $value){
                                 $key = array_search($value, $search_array);
