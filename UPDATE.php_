@@ -642,7 +642,9 @@ if ($step == 0){
                     echo table_row_check('check versions in UPDATE directory', FALSE );
                 }else{
                     foreach($dirs as $update_folder){
-                        include('UPDATE/'.$update_folder.'/version_check.php');
+                        if ( file_exists('UPDATE/'.$update_folder.'/version_check.php') ){
+                            include('UPDATE/'.$update_folder.'/version_check.php');
+                        }
                     }
                 }
                 

@@ -62,6 +62,10 @@ function message($LEVEL, $text, $mode = "standard"){
 function escape_string($string){
     # Make a safe string
 	global $dbh;
+    if ( !($dbh instanceof mysqli) ){
+        # no DB connection yet (e.g. installer start page)
+        return addslashes($string ?? '');
+    }
     $escaped_string = mysqli_real_escape_string($dbh, $string ?? '');
     return $escaped_string;
 }
@@ -1011,6 +1015,11 @@ function db_handler($query, $output = "result", $debug_title = "query"){
     $query = trim($query);
 	global $dbh;
 	global $dbh_obj;
+
+    if ( !($dbh instanceof mysqli) ){
+        # no DB connection (e.g. before NConf is installed), behave like a failed query
+        return FALSE;
+    }
 
     if ( (DB_NO_WRITES == 1) AND ( !preg_match("/^SELECT/i", $query) ) ){
         message ('INFO', "DB_NO_WRITES activated, no deletions or modifications will be performed");
