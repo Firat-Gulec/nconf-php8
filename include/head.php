@@ -89,6 +89,7 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <script src="include/js/theme.js" type="text/javascript"></script>
     <?php
     // Choose template file from config
     if ( defined('TEMPLATE_DIR') ){
@@ -152,6 +153,10 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 
     echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/jQuery/jquery.table.css">';
     echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/jQuery/nconf-widget.css">';
+        # dark theme overrides, must be loaded last
+        if ( file_exists('design_templates/'.TEMPLATE_DIR.'/dark.css') ){
+            echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/dark.css">';
+        }
     echo '<title>NConf  '.strtoupper($_SERVER['SERVER_NAME']).'</title>';
     ?>
 
@@ -176,11 +181,13 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 				<col width="600px">
 				<col width="50px">
 				<col width="50px">
+				<col width="100px">
 			  </colgroup>
                 <tr>
                     <td>Welcome&nbsp;<?php if( isset($_SESSION["userinfos"]['username']) ) echo $_SESSION["userinfos"]['username']; ?></td>
                     <td><div align="center"><a title="Get help on nconf.org" class="jQ_tooltip" href="http://www.nconf.org/dokuwiki/doku.php?id=nconf:help:main" target="_blank">[ Help ]</a></div></td>
 					<td><div align="center"><a title="See the CHANGELOG for recent changes" class="jQ_tooltip" href="CHANGELOG" target="_blank">[ ChangeLog ]</a></div></td>
+										<td><div align="center"><a id="theme-toggle" href="#" onclick="return nconfToggleTheme();" title="Switch between light and dark theme">[ Dark mode ]</a></div></td>
                 </tr>
             </table>
         </div>

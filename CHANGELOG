@@ -1,5 +1,10 @@
 Working Release 1.5.0
 
+ADDED   dark theme with a toggle in the header bar (follows the browser preference by default, choice is stored in the browser)
+FIXED   PHP 8 compatibility (autoload, each(), magic quotes, mysqli exception mode, null parameter deprecations)
+FIXED   navigation menus were empty on MySQL 8 because "grouping" is a reserved word
+ADDED   Dockerfile and docker-compose.yml (PHP 8.3 + MySQL 8.0) for testing
+
 FIXED   corrections on table head for xmode actions in overview.php
 
 
