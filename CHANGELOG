@@ -1,5 +1,7 @@
 Working Release 1.5.0
 
+SECURITY updated bundled JavaScript libraries (all had known XSS vulnerabilities): jQuery 1.5.1 -> 3.7.1, jQuery UI 1.8.9 -> 1.13.3, DataTables 1.7.6 -> 1.13.11
+CHANGED  replaced removed jQuery APIs (.live(), hover pseudo-event, .attr('checked'), array dialog position); script URLs now carry a version parameter so browsers reload updated files
 ADDED   dark theme with a toggle in the header bar (follows the browser preference by default, choice is stored in the browser)
 FIXED   PHP 8 compatibility (autoload, each(), magic quotes, mysqli exception mode, null parameter deprecations)
 FIXED   navigation menus were empty on MySQL 8 because "grouping" is a reserved word

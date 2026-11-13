@@ -23,7 +23,7 @@ require_once 'include/head.php';
         $('[name="checkbox_toggle_all"]').click(function() {
             $(this).closest("thead").next("tbody").find('input:checkbox').each( function(){
                 var checkbox = $(this);
-                checkbox.attr('checked', !checkbox.attr('checked'));
+                checkbox.prop('checked', !checkbox.prop('checked'));
                 checkbox.change();
             })
         });

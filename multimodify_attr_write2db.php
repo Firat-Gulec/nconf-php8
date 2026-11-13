@@ -6,7 +6,7 @@ require_once 'include/head.php';
 <script type="text/javascript">
     $(document).ready(function(){
         // show inheritance table when clicking a host
-        $(".accordion_title").live("click hover", function(event) {
+        $(document).on("click mouseenter mouseleave", ".accordion_title", function(event) {
             $(this).nconf_accordion_list(event);
             return false;
         });
@@ -21,7 +21,7 @@ require_once 'include/head.php';
         $('[name="checkbox_toggle_all"]').click(function() {
             $(this).closest("thead").next("tbody").find('input:checkbox').each( function(){
                 var checkbox = $(this);
-                checkbox.attr('checked', !checkbox.attr('checked'));
+                checkbox.prop('checked', !checkbox.prop('checked'));
                 checkbox.change();
             })
         });

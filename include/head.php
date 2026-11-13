@@ -116,16 +116,20 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
     /* Load juery script files */
     include_once('design_templates/'.TEMPLATE_DIR.'/jQuery/init.php');
     if ( defined('JQUERY') AND JQUERY == 1 ){
+        // the version parameter makes browsers reload the scripts after an update
+        $js_src = function($file){
+            return $file.'?v='.( file_exists($file) ? filemtime($file) : '' );
+        };
         echo '<!-- Load jQuery -->
-            <script src="include/js/jquery.js" type="text/javascript"></script>
-            <script src="include/js/jquery-ui.custom.min.js" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery-ui.custom.min.js').'" type="text/javascript"></script>
             ';
         echo '<!-- Load jQuery plugins (also nconf-jquery plugins/functions -->
-            <script src="include/js/jquery_plugins/jquery.nconf_ajax_debug.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_help_admin.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_tooltip.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_accordion_list.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_head.js" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_ajax_debug.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_help_admin.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_tooltip.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_accordion_list.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_head.js').'" type="text/javascript"></script>
             ';
 
         // jquery theme switcher
