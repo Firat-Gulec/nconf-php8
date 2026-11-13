@@ -151,11 +151,11 @@ if ( mysqli_num_rows($result) ){
             }
             
 
-            while ( $attr = each($_POST) ){
+            foreach ( $_POST as $post_key => $post_value ){
                 // only add attributes (which have int(id) as attr key
-                if ( is_int($attr["key"]) ){
+                if ( is_int($post_key) ){
                     // add attribute
-                    add_attribute($id, $attr["key"], $attr["value"]);
+                    add_attribute($id, $post_key, $post_value);
                 }
             }
 

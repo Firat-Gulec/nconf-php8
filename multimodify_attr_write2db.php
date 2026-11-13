@@ -83,10 +83,10 @@ if ( isset($_POST["multimodify"])
 }
 
 # Check mandatory fields
-while ( $attr = each($_POST) ){
-    if ( is_int($attr["key"]) ){
+foreach ( $_POST as $post_key => $post_value ){
+    if ( is_int($post_key) ){
         # Check mandatory fields
-        $m_array = db_templates("mandatory", $config_class, $attr["key"]);
+        $m_array = db_templates("mandatory", $config_class, $post_key);
         if ( check_mandatory($m_array,$_POST) == "no"){
             $write2db = "no";
         }

@@ -60,16 +60,9 @@ function message($LEVEL, $text, $mode = "standard"){
 
 
 function escape_string($string){
-    # Strip slashes if magic_quotes_gpc is ON (DEPRECATED as of PHP 5.3.0 and REMOVED as of PHP 6.0.0.)
-    # Reverse magic_quotes_gpc/magic_quotes_sybase effects on those vars if ON.
-    if (get_magic_quotes_gpc() ){
-        message('DEBUG', "magic_quotes_gpc is ON: using stripslashes to correct it");
-        $string = stripslashes($string);
-    }
-    
     # Make a safe string
 	global $dbh;
-    $escaped_string = mysqli_real_escape_string($dbh, $string);
+    $escaped_string = mysqli_real_escape_string($dbh, $string ?? '');
     return $escaped_string;
 }
 
@@ -193,7 +186,7 @@ function attr_order($id, $mode){
 
 function class_order($id, $mode){
     // Get old order and class
-    $result_assoc  = db_handler("SELECT ordering, grouping, nav_privs FROM ConfigClasses WHERE id_class=$id", "assoc", "GET order and grouping of class");
+    $result_assoc  = db_handler("SELECT ordering, `grouping`, nav_privs FROM ConfigClasses WHERE id_class=$id", "assoc", "GET order and grouping of class");
       $old_order  = $result_assoc["ordering"];
       $group  = $result_assoc["grouping"];
       $nav_priv  = $result_assoc["nav_privs"];
@@ -201,9 +194,9 @@ function class_order($id, $mode){
     // Select next class to change with
     // Make query right to the mode up/down
     if ($mode == "up") {
-        $query = 'SELECT id_class, ordering AS dest_order FROM ConfigClasses WHERE ordering < '.$old_order.' AND grouping="'.$group.'" AND nav_privs="'.$nav_priv.'" ORDER BY ordering DESC LIMIT 1';
+        $query = 'SELECT id_class, ordering AS dest_order FROM ConfigClasses WHERE ordering < '.$old_order.' AND `grouping`="'.$group.'" AND nav_privs="'.$nav_priv.'" ORDER BY ordering DESC LIMIT 1';
     }elseif ($mode == "down"){
-        $query = 'SELECT id_class, ordering AS dest_order FROM ConfigClasses WHERE ordering > '.$old_order.' AND grouping="'.$group.'"AND nav_privs="'.$nav_priv.'" ORDER BY ordering ASC LIMIT 1';
+        $query = 'SELECT id_class, ordering AS dest_order FROM ConfigClasses WHERE ordering > '.$old_order.' AND `grouping`="'.$group.'" AND nav_privs="'.$nav_priv.'" ORDER BY ordering ASC LIMIT 1';
     }
     $result_assoc = db_handler($query, "assoc", "GET new order (and the id_class of destination)");
       $dest_id  = $result_assoc["id_class"];
@@ -337,8 +330,8 @@ function history_add($action, $name, $value, $fk_id_item = 'NULL', $feature = ''
 # reloads the db connection and selects the db
 # (must be user after auth by sql)
 function relaod_nconf_db_connection(){
+    global $dbh;
     $dbh = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
-    //mysql_select_db(DBNAME);
 }
 
 
@@ -1056,7 +1049,7 @@ function db_handler($query, $output = "result", $debug_title = "query"){
                     break;
                 case "getOne":
                     $first_row = mysqli_fetch_row($result);
-                    $return = $first_row[0];
+                    $return = $first_row[0] ?? null;
                     # DEBUG output with new API module:
                     $debug_data_result  = NConf_HTML::text('<b>Result: getOne:</b>'.$return);
                     break;
@@ -1260,7 +1253,8 @@ function add_attribute($id, $id_attr, $attr_value){
             $attr_datatype = db_templates("attr_datatype", $attr["key"]);
 
             # save assign_one/assign_many/assign_cust_order in ItemLinks
-            while ( $many_attr = each($attr["value"]) ){
+            foreach ( $attr["value"] as $many_key => $many_value ){
+                $many_attr = array("key" => $many_key, "value" => $many_value);
                 # if value is empty go to next one
                 if (!$many_attr["value"]){
                     continue;
@@ -1714,7 +1708,7 @@ function create_menu($result){
                       
                       // define the navigation identifier for marking nav entry as active
                       $url_query = parse_url($nav_link_details[1], PHP_URL_QUERY);
-                      $url_query_explode = explode("=", $url_query);
+                      $url_query_explode = explode("=", (string) $url_query);
                       $navigation_identifier = isset($url_query_explode[1]);
                       NConf_DEBUG::set($navigation_identifier, 'DEBUG', "navigation identifier");
                       
