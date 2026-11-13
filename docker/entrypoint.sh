@@ -8,6 +8,7 @@ if [ ! -f config/nconf.php ]; then
     mkdir -p config
     cp -a config.orig/. config/
     sed -i "s#define('NCONFDIR',.*#define('NCONFDIR',     '/var/www/html');#" config/nconf.php
+    sed -i "s#define('NAGIOS_BIN',.*#define('NAGIOS_BIN',   '/usr/sbin/nagios4');#" config/nconf.php
     sed -i "s#define('DBHOST'.*#define('DBHOST', '${DBHOST:-db}');#" config/mysql.php
     sed -i "s#define('DBNAME'.*#define('DBNAME', '${DBNAME:-NConf}');#" config/mysql.php
     sed -i "s#define('DBUSER'.*#define('DBUSER', '${DBUSER:-nconf}');#" config/mysql.php

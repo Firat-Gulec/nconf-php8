@@ -96,7 +96,7 @@ if(  ( ( isset($_POST["delete"]) ) AND ($_POST["delete"] == "yes") ) AND
             if ( !empty($_POST["from"]) AND $class != "host" ){
                 $url = $_POST["from"];
             }else{
-                $url = $_SESSION["after_delete_page"];
+                $url = $_SESSION["after_delete_page"] ?? 'index.php';
             }
                 
         }elseif (DB_NO_WRITES != 1){
@@ -134,6 +134,8 @@ if(  ( ( isset($_POST["delete"]) ) AND ($_POST["delete"] == "yes") ) AND
         $url = $_GET["from"];
     }elseif ( !empty($_SESSION["after_delete_page"]) ){
         $url = $_SESSION["after_delete_page"];
+    }else{
+        $url = 'index.php';
     }
 
     # make ids as array
@@ -180,7 +182,7 @@ if(  ( ( isset($_POST["delete"]) ) AND ($_POST["delete"] == "yes") ) AND
         if(DB_NO_WRITES == 1) $content_button .=  'disabled';
         $content_button .= '>&nbsp';
 
-        $content_button .= '<input type=button onClick="window.location.href=\''.$_SESSION["go_back_page"].'\'" value="Back">';
+        $content_button .= '<input type=button onClick="        window.location.href=\''.($_SESSION["go_back_page"] ?? 'index.php').'\'" value="Back">';
     $content_button .= '</form>';
 
     echo NConf_HTML::limit_space(
@@ -302,7 +304,7 @@ if(  ( ( isset($_POST["delete"]) ) AND ($_POST["delete"] == "yes") ) AND
 if ( NConf_DEBUG::status('ERROR') ) {
     echo NConf_HTML::limit_space( NConf_HTML::show_error() );
     echo "<br><br>";
-    echo NConf_HTML::back_button($_SESSION["go_back_page"]);
+    echo NConf_HTML::back_button($_SESSION["go_back_page"] ?? 'index.php');
 }
 
 
