@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mysql:8.0
+    command: ["--sql-mode="]
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: NConf
+      MYSQL_USER: nconf
+      MYSQL_PASSWORD: link2db
+    volumes:
+      - ./INSTALL_/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql:ro
+      - dbdata:/var/lib/mysql
+
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

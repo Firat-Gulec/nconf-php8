@@ -1,0 +1,342 @@
+/*
+ * NConf dark theme
+ * Active when <html data-theme="dark"> is set (see include/js/theme.js).
+ * Loaded after all other stylesheets, so it only overrides colors.
+ */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --dk-bg: #1b1e23;
+  --dk-surface: #252a31;
+  --dk-surface-alt: #2d333b;
+  --dk-surface-hover: #38404a;
+  --dk-border: #444c58;
+  --dk-text: #d3d9e0;
+  --dk-text-muted: #9aa4b1;
+  --dk-link: #8fb4e3;
+  --dk-accent: #2f4766;
+  --dk-error-bg: #4a2323;
+  --dk-error-border: #a64545;
+  --dk-warn-bg: #4d4120;
+  --dk-warn-border: #b08a2a;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--dk-bg);
+  background-image: none;
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] a,
+html[data-theme="dark"] .link_with_tag,
+html[data-theme="dark"] .ui-widget-content a,
+html[data-theme="dark"] .ui-state-default a,
+html[data-theme="dark"] .ui-nconf-table tbody tr a {
+  color: var(--dk-link);
+}
+
+html[data-theme="dark"] .link_with_tag_active,
+html[data-theme="dark"] .ui-nconf-link:hover,
+html[data-theme="dark"] .ui-state-hover a,
+html[data-theme="dark"] .ui-state-hover a:hover {
+  color: #fff;
+}
+
+/* header bars */
+html[data-theme="dark"] #title {
+  background-color: #11141a;
+  background-image: none;
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] #titlesub {
+  background-color: #2a3a52;
+  background-image: none;
+}
+
+html[data-theme="dark"] #titlesub,
+html[data-theme="dark"] #titlesub a {
+  color: #fff;
+}
+
+/* jQuery UI widgets */
+html[data-theme="dark"] .ui-widget-content,
+html[data-theme="dark"] .accordion .box_content,
+html[data-theme="dark"] .table_content,
+html[data-theme="dark"] .feedback,
+html[data-theme="dark"] #footer,
+html[data-theme="dark"] .tooltip {
+  background: var(--dk-surface);
+  color: var(--dk-text);
+  border-color: var(--dk-border);
+}
+
+html[data-theme="dark"] .ui-widget-header,
+html[data-theme="dark"] .ui-widget-header a,
+html[data-theme="dark"] .bg_header,
+html[data-theme="dark"] .bg_header_2,
+html[data-theme="dark"] table.display thead th,
+html[data-theme="dark"] .ui-nconf-table thead th {
+  background: var(--dk-surface-hover);
+  border-color: var(--dk-border);
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] .ui-state-default,
+html[data-theme="dark"] .ui-widget-content .ui-state-default,
+html[data-theme="dark"] .ui-widget-header .ui-state-default {
+  background: var(--dk-surface-alt);
+  border-color: var(--dk-border);
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] .ui-state-hover,
+html[data-theme="dark"] .ui-widget-content .ui-state-hover,
+html[data-theme="dark"] .ui-widget-header .ui-state-hover,
+html[data-theme="dark"] .ui-state-focus,
+html[data-theme="dark"] .ui-widget-content .ui-state-focus {
+  background: var(--dk-surface-hover);
+  border-color: #6a7685;
+  color: #fff;
+}
+
+html[data-theme="dark"] .ui-state-active,
+html[data-theme="dark"] .ui-widget-content .ui-state-active,
+html[data-theme="dark"] .ui-widget-header .ui-state-active {
+  background: var(--dk-accent);
+  border-color: #5877a3;
+  color: #fff;
+}
+
+html[data-theme="dark"] .ui-state-highlight,
+html[data-theme="dark"] .ui-widget-content .ui-state-highlight {
+  background: var(--dk-warn-bg);
+  border-color: var(--dk-warn-border);
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] .ui-state-error,
+html[data-theme="dark"] .ui-widget-content .ui-state-error,
+html[data-theme="dark"] .ui-widget-header .ui-state-error {
+  background: var(--dk-error-bg);
+  border-color: var(--dk-error-border);
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] .ui-state-error.highlight:hover {
+  background: #5e2b2b;
+}
+
+/* icons are dark glyphs on transparent background */
+html[data-theme="dark"] .ui-icon {
+  filter: invert(0.85);
+}
+
+html[data-theme="dark"] .ui-state-error .ui-icon,
+html[data-theme="dark"] .ui-state-error-text .ui-icon {
+  filter: none;
+}
+
+html[data-theme="dark"] img.nav-icon,
+html[data-theme="dark"] .title > img,
+html[data-theme="dark"] #ui-nconf-icon-bar img {
+  filter: brightness(1.6) contrast(0.9);
+}
+
+/* navigation */
+html[data-theme="dark"] #navigation ul.nav-list > li:hover {
+  background-color: var(--dk-surface-hover);
+}
+
+html[data-theme="dark"] #navigation ul.nav-list > li.active {
+  background-color: var(--dk-accent);
+}
+
+html[data-theme="dark"] #navigation ul.nav-list > li.active a {
+  color: #fff;
+}
+
+/* tables and lists */
+html[data-theme="dark"] .color_list1,
+html[data-theme="dark"] .odd,
+html[data-theme="dark"] tr.odd,
+html[data-theme="dark"] table.display tr.odd td,
+html[data-theme="dark"] tr.odd td.sorting_1,
+html[data-theme="dark"] tr.odd td.sorting_2,
+html[data-theme="dark"] tr.odd td.sorting_3 {
+  background-color: var(--dk-surface);
+}
+
+html[data-theme="dark"] .color_list2,
+html[data-theme="dark"] .even,
+html[data-theme="dark"] tr.even,
+html[data-theme="dark"] table.display tr.even td,
+html[data-theme="dark"] tr.even td.sorting_1,
+html[data-theme="dark"] tr.even td.sorting_2,
+html[data-theme="dark"] tr.even td.sorting_3 {
+  background-color: var(--dk-surface-alt);
+}
+
+html[data-theme="dark"] .color_list3,
+html[data-theme="dark"] #history tbody tr td.highlighted,
+html[data-theme="dark"] .color_group_border,
+html[data-theme="dark"] .debbug_query {
+  background-color: #3a424d;
+}
+
+html[data-theme="dark"] .color_group_border,
+html[data-theme="dark"] .color_group_border_close,
+html[data-theme="dark"] .color_group_border_left,
+html[data-theme="dark"] .color_group_border_right,
+html[data-theme="dark"] .color_group_border_top_bottom {
+  border-color: #3a424d !important;
+}
+
+html[data-theme="dark"] #highlight:hover,
+html[data-theme="dark"] .highlight:hover {
+  background-color: var(--dk-surface-hover);
+}
+
+html[data-theme="dark"] .ui-nconf-table tbody tr,
+html[data-theme="dark"] .ui-nconf-table tbody tr a,
+html[data-theme="dark"] .ui-nconf-table .ui-widget-content {
+  border-color: var(--dk-border);
+}
+
+html[data-theme="dark"] .ui-nconf-table tbody tr {
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] .title,
+html[data-theme="dark"] table.display,
+html[data-theme="dark"] table.display td {
+  border-color: var(--dk-border);
+}
+
+html[data-theme="dark"] .color_nomon {
+  background-color: #5a3d1f;
+}
+
+html[data-theme="dark"] .color_nomon:hover {
+  background-color: #6d4a26;
+}
+
+html[data-theme="dark"] .color_warning {
+  background-color: #6e2f2f !important;
+}
+
+html[data-theme="dark"] .attention,
+html[data-theme="dark"] .red,
+html[data-theme="dark"] #attention,
+html[data-theme="dark"] .mark_as_mandatory,
+html[data-theme="dark"] .status_failed,
+html[data-theme="dark"] .color_nomon_text {
+  color: #ff7b72;
+}
+
+html[data-theme="dark"] .green,
+html[data-theme="dark"] .status_ok {
+  color: #5fd068;
+}
+
+html[data-theme="dark"] .orange,
+html[data-theme="dark"] .status_unknown {
+  color: #f0a43a;
+}
+
+/* form controls */
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] .ui-widget input,
+html[data-theme="dark"] .ui-widget select,
+html[data-theme="dark"] .ui-widget textarea,
+html[data-theme="dark"] .ui-nconf-input,
+html[data-theme="dark"] .no-background {
+  background-color: #14171c !important;
+  background-image: none !important;
+  color: var(--dk-text);
+  border-color: var(--dk-border);
+}
+
+html[data-theme="dark"] input[type="submit"],
+html[data-theme="dark"] input[type="button"],
+html[data-theme="dark"] input[type="reset"],
+html[data-theme="dark"] button {
+  background-color: var(--dk-surface-hover) !important;
+  color: var(--dk-text);
+  border: 1px solid #5a6472;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] input[type="submit"]:hover,
+html[data-theme="dark"] input[type="button"]:hover,
+html[data-theme="dark"] button:hover {
+  background-color: var(--dk-accent) !important;
+}
+
+html[data-theme="dark"] input[type="radio"],
+html[data-theme="dark"] input[type="checkbox"] {
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] option {
+  background-color: #14171c;
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] option.ui-state-error {
+  background-color: var(--dk-error-bg);
+}
+
+html[data-theme="dark"] input[disabled],
+html[data-theme="dark"] select[disabled],
+html[data-theme="dark"] textarea[disabled] {
+  opacity: .5;
+}
+
+html[data-theme="dark"] .multipleSelectBoxControl.ui-nconf-content.ui-widget-content.ui-resizable:hover {
+  border-right-color: #6a7685;
+}
+
+/* DataTables paging / info text */
+html[data-theme="dark"] .dataTables_info,
+html[data-theme="dark"] .dataTables_length,
+html[data-theme="dark"] .dataTables_filter,
+html[data-theme="dark"] .dataTables_paginate,
+html[data-theme="dark"] .dataTables_empty,
+html[data-theme="dark"] .paging_full_numbers span.paginate_button {
+  color: var(--dk-text-muted);
+}
+
+html[data-theme="dark"] .paging_full_numbers span.paginate_button,
+html[data-theme="dark"] .paging_full_numbers span.paginate_active {
+  background-color: var(--dk-surface-alt);
+  border-color: var(--dk-border);
+}
+
+html[data-theme="dark"] .paging_full_numbers span.paginate_button:hover,
+html[data-theme="dark"] .paging_full_numbers span.paginate_active {
+  background-color: var(--dk-accent);
+  color: #fff;
+}
+
+/* generated config / debug output */
+html[data-theme="dark"] pre,
+html[data-theme="dark"] .editor_field {
+  color: var(--dk-text);
+}
+
+html[data-theme="dark"] hr,
+html[data-theme="dark"] fieldset {
+  border-color: var(--dk-border);
+}
+
+/* theme toggle in the header bar */
+#titlesub table td {
+  white-space: nowrap;
+}
+
+#theme-toggle {
+  cursor: pointer;
+}

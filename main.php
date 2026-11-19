@@ -34,15 +34,19 @@ require_once(NCONFDIR.'/include/includeAllClasses.php');
 require_once(NCONFDIR.'/config/mysql.php');
 #
 # mysql Initiate connection procedurally
+# (PHP 8.1+ throws exceptions by default; NConf checks return values instead)
 #
+mysqli_report(MYSQLI_REPORT_OFF);
 $dbh = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
-//mysql_select_db(DBNAME);
+if (!$dbh) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
 #
 # mysql Initiate connection object oriented
 #
 $dbh_obj = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 if ($dbh_obj->connect_errno) {
-    die("Verbindung fehlgeschlagen: " . $dbh_obj->connect_error);
+    die("Database connection failed: " . $dbh_obj->connect_error);
 }
 
 #

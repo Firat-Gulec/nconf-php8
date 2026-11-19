@@ -35,7 +35,7 @@ $(document).ready(function(){
     $.nconf_tooltip();
 
     // link hovers (a little bit complex because no simple theme css available)
-    $( "a" ).live('hover', function () {
+    $(document).on('mouseenter mouseleave', 'a', function () {
         $(this).not(".ui-button").not("[role=button]").toggleClass("ui-nconf-link");
     });
 

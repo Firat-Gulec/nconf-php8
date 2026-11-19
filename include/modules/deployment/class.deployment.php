@@ -19,7 +19,7 @@ class NConf_Deployment{
     }
 
     //! Enables the module
-    final private function load_modules(){
+    private function load_modules(){
         $module_directories = getDirectoryTree($this->path);
         foreach ($module_directories AS $module_name) {
             $module_path = $this->path. '/' .$module_name. '/class.deployment_' .$module_name. '.php';

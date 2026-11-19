@@ -89,6 +89,7 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <script src="include/js/theme.js" type="text/javascript"></script>
     <?php
     // Choose template file from config
     if ( defined('TEMPLATE_DIR') ){
@@ -115,16 +116,20 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
     /* Load juery script files */
     include_once('design_templates/'.TEMPLATE_DIR.'/jQuery/init.php');
     if ( defined('JQUERY') AND JQUERY == 1 ){
+        // the version parameter makes browsers reload the scripts after an update
+        $js_src = function($file){
+            return $file.'?v='.( file_exists($file) ? filemtime($file) : '' );
+        };
         echo '<!-- Load jQuery -->
-            <script src="include/js/jquery.js" type="text/javascript"></script>
-            <script src="include/js/jquery-ui.custom.min.js" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery-ui.custom.min.js').'" type="text/javascript"></script>
             ';
         echo '<!-- Load jQuery plugins (also nconf-jquery plugins/functions -->
-            <script src="include/js/jquery_plugins/jquery.nconf_ajax_debug.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_help_admin.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_tooltip.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_accordion_list.js" type="text/javascript"></script>
-            <script src="include/js/jquery_plugins/jquery.nconf_head.js" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_ajax_debug.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_help_admin.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_tooltip.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_accordion_list.js').'" type="text/javascript"></script>
+            <script src="'.$js_src('include/js/jquery_plugins/jquery.nconf_head.js').'" type="text/javascript"></script>
             ';
 
         // jquery theme switcher
@@ -152,6 +157,10 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 
     echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/jQuery/jquery.table.css">';
     echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/jQuery/nconf-widget.css">';
+        # dark theme overrides, must be loaded last
+        if ( file_exists('design_templates/'.TEMPLATE_DIR.'/dark.css') ){
+            echo '<link rel="stylesheet" type="text/css" href="design_templates/'.TEMPLATE_DIR.'/dark.css">';
+        }
     echo '<title>NConf  '.strtoupper($_SERVER['SERVER_NAME']).'</title>';
     ?>
 
@@ -176,11 +185,13 @@ $NConf_PERMISSIONS = new NConf_PERMISSIONS;
 				<col width="600px">
 				<col width="50px">
 				<col width="50px">
+				<col width="100px">
 			  </colgroup>
                 <tr>
                     <td>Welcome&nbsp;<?php if( isset($_SESSION["userinfos"]['username']) ) echo $_SESSION["userinfos"]['username']; ?></td>
                     <td><div align="center"><a title="Get help on nconf.org" class="jQ_tooltip" href="http://www.nconf.org/dokuwiki/doku.php?id=nconf:help:main" target="_blank">[ Help ]</a></div></td>
 					<td><div align="center"><a title="See the CHANGELOG for recent changes" class="jQ_tooltip" href="CHANGELOG" target="_blank">[ ChangeLog ]</a></div></td>
+										<td><div align="center"><a id="theme-toggle" href="#" onclick="return nconfToggleTheme();" title="Switch between light and dark theme">[ Dark mode ]</a></div></td>
                 </tr>
             </table>
         </div>

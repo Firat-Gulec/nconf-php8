@@ -171,7 +171,7 @@ if ( isset($_SESSION["cache"]["use_cache"]) ){
             <?php echo $colgroup; ?>
             <tr><td>Nagios-specific attribute name</td>
                 <td></td>
-                <td><input type=text name=attr_name maxlength=60 value="<?php echo htmlspecialchars($attr_entry["attr_name"]); ?>"></td>
+                <td><input type=text name=attr_name maxlength=60 value="<?php echo htmlspecialchars($attr_entry["attr_name"] ?? ''); ?>"></td>
                 <td class="attention center">*</td>
             </tr>
         </table>
@@ -191,12 +191,12 @@ if ( isset($_SESSION["cache"]["use_cache"]) ){
             <?php echo $colgroup; ?>
             <tr><td>friendly name (displayed in GUI)</td>
                 <td></td>
-                <td><input type=text name=friendly_name maxlength=80 value="<?php echo htmlspecialchars($attr_entry["friendly_name"]); ?>"></td>
+                <td><input type=text name=friendly_name maxlength=80 value="<?php echo htmlspecialchars($attr_entry["friendly_name"] ?? ''); ?>"></td>
                 <td class="attention center">*</td>
             </tr>
             <tr><td>description, example or help-text</td>
                 <td></td>
-                <td><input type=text name=description maxlength=250 value="<?php echo htmlspecialchars($attr_entry["description"]); ?>"></td>
+                <td><input type=text name=description maxlength=250 value="<?php echo htmlspecialchars($attr_entry["description"] ?? ''); ?>"></td>
                 <td class="attention center"></td>
             </tr>
         </table>
@@ -256,13 +256,13 @@ if ( isset($_SESSION["cache"]["use_cache"]) ){
             </tr>
             <tr><td>list of possible values separated by &quot;<b><?php echo SELECT_VALUE_SEPARATOR; ?></b>&quot;</td>
                 <td></td>
-                <td><input type=text id=poss_values_autocomplete name=poss_values value="<?php echo htmlspecialchars($attr_entry["poss_values"]); ?>"></td>
+                <td><input type=text id=poss_values_autocomplete name=poss_values value="<?php echo htmlspecialchars($attr_entry["poss_values"] ?? ''); ?>"></td>
                 <td class="attention center">*</td>
             </tr>
             <tr><td>pre-defined value(s)</td>
                 <td></td>
                 <td>
-                    <input type=text name=predef_value id=predef_value_autocomplete class="ui-autocomplete-input" maxlength=1024 value="<?php echo htmlspecialchars($attr_entry["predef_value"]); ?>"></td>
+                    <input type=text name=predef_value id=predef_value_autocomplete class="ui-autocomplete-input" maxlength=1024 value="<?php echo htmlspecialchars($attr_entry["predef_value"] ?? ''); ?>"></td>
                 <td class="attention center"></td>
             </tr>
             <tr><td>max. text-field length (chars)</td>

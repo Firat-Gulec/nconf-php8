@@ -400,10 +400,10 @@ if ($step == 0){
     if ($db_check !== FALSE ){
         echo table_row_description('Checks', '');
         if (function_exists('mysqli_connect')){
+            mysqli_report(MYSQLI_REPORT_OFF);
             $dbh = @mysqli_connect(check_session_value("DBHOST"), check_session_value("DBUSER"), check_session_value("DBPASS"), check_session_value("DBNAME"));
             if (!$dbh){
-                # unfortunately mysql_error wont give information about last error here
-                message($error, 'Could not connect: ' . mysqli_error($dbh));
+                message($error, 'Could not connect: ' . mysqli_connect_error());
                 # php >= 5.2.0 provides additional phperror which could give more information about the last mysql error
                 if ( function_exists('error_get_last') ){
                     $php_error = error_get_last();

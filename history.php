@@ -1,7 +1,7 @@
 <?php
 require_once 'include/head.php';
 // Load the dataTables plugin
-echo '<script src="include/js/jquery_plugins/jquery.dataTables.min.js" type="text/javascript"></script>';
+echo '<script src="include/js/jquery_plugins/jquery.dataTables.min.js?v='.filemtime('include/js/jquery_plugins/jquery.dataTables.min.js').'" type="text/javascript"></script>';
 echo '<script src="include/js/jquery_plugins/jquery.dataTables.fnSetFilteringDelay.js" type="text/javascript"></script>';
 
 if ( !empty($_GET["id"]) ){
@@ -9,7 +9,7 @@ if ( !empty($_GET["id"]) ){
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#history tbody tr').live('hover', function() {
+            $('#history').on('mouseenter mouseleave', 'tbody tr', function() {
                 $(this).children().toggleClass( 'highlighted' );
             });
 
@@ -60,7 +60,7 @@ if ( !empty($_GET["id"]) ){
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#history tbody tr').live('hover', function() {
+            $('#history').on('mouseenter mouseleave', 'tbody tr', function() {
                 $(this).children().toggleClass( 'highlighted' );
             });
 
