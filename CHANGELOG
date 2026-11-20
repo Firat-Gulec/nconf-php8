@@ -1,4 +1,11 @@
-Working Release 1.5.0
+Release 1.5.1 (2026-11-20)
+
+CHANGED  version label is now "(php8)" and the pre-release warning was removed from the login, install and update pages
+ADDED   Docker: nagios4-core is installed, so the syntax check of "Generate Nagios config" works
+FIXED   Docker: Perl and shell scripts are converted to LF (Windows checkouts broke the shebang lines); added .gitattributes
+FIXED   PHP 8 warnings in delete_item.php and clone_host.php when opened without a previous page
+
+Release 1.5.0 (PHP 8 fork)
 
 SECURITY updated bundled JavaScript libraries (all had known XSS vulnerabilities): jQuery 1.5.1 -> 3.7.1, jQuery UI 1.8.9 -> 1.13.3, DataTables 1.7.6 -> 1.13.11
 CHANGED  replaced removed jQuery APIs (.live(), hover pseudo-event, .attr('checked'), array dialog position); script URLs now carry a version parameter so browsers reload updated files
